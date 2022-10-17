@@ -36,48 +36,34 @@ class newContactViewController: UIViewController {
         if let name = nameField.text
             , let phone = phoneField.text {
             addNewContact(name, phone)
-            
-            
-            
-            
+
             
         } else {
             errorMessage.textColor = .red
         }
         
     }
+    // kintamasis pasiekiantis kito VC funkcija
+    var addNewValuesClosure: ((String, String) -> ())!
+
     
-    // main saugojimo funkcija
+    
+    
+    // kvieciam saugojimo funkcija
     func addNewContact(_ name: String, _ phone: String) {
         
-        nameData.append(name)
-        phoneData.append(phone)
+        
+        addNewValuesClosure(name, phone)
+        
         
         errorMessage.text = "New contact added to list"
         errorMessage.textColor = .tintColor
-        
         nameField.text = ""
         phoneField.text = ""
-        
-      // bandymas atnaujinti duomenis
-      //  let sendValue = contactListViewController();
-      //  sendValue.reloadData();
         
     }
     
     
-    
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
+
     
 }

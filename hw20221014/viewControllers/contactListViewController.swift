@@ -7,12 +7,6 @@
 
 import UIKit
 
-// Pateikiame pradinius duomenis (tr, kreivai, bet mokslams tiks)
-var nameData = ["gediminas", "algirdas", "kestutis", "vytautas"]
-var phoneData = ["+370 657 55701", "+370 657 55701", "+370 657 55701", "+370 657 55701"]
-
-// test comment
-
 
 
 class contactListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -22,7 +16,13 @@ class contactListViewController: UIViewController, UITableViewDataSource, UITabl
     @IBOutlet weak var bottomSignature: UILabel!
     
 
-    
+    // Pateikiame pradinius duomenis (tr, kreivai, bet mokslams tiks)
+    var nameData = ["gediminas", "algirdas", "kestutis", "vytautas"]
+    var phoneData = ["+370 657 55701", "+370 657 55701", "+370 657 55701", "+370 657 55701"]
+
+    // test comment
+
+
     
 
     override func viewDidLoad() {
@@ -68,21 +68,28 @@ class contactListViewController: UIViewController, UITableViewDataSource, UITabl
     
     // refresh data in table view
     @IBAction func reloadDataPressed(_ sender: Any) {
+        reloadList()
+    }
+
+    
+    func addNewValues(_ name: String, _ phone: String) -> () {
+        print("name \(name) and \(phone)")
+        nameData.append(name)
+        phoneData.append(phone)
+     //   self.tableView.reloadData()
+        reloadList()
+    }
+
+    func reloadList() {
         self.tableView.reloadData()
     }
-
-
     
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "gotToAddNewContact" {
+         let destinationViewController = segue.destination as! newContactViewController
+            destinationViewController.addNewValuesClosure = addNewValues
+        }
     }
-    */
-
+    
+    
 }
